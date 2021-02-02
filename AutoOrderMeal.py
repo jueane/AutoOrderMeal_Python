@@ -50,15 +50,22 @@ while True:
 
 
 while True:
-    if(IsFind('order.png')):
+    if(IsFind('wifi.png')):
         print("3")
         pyautogui.click()
         break
     time.sleep(1)
 
 while True:
-    if(IsFind('confirm.png')):
+    if(IsFind('order.png')):
         print("4")
+        pyautogui.click()
+        break
+    time.sleep(1)
+
+while True:
+    if(IsFind('confirm.png')):
+        print("5")
         pyautogui.click()
         break
     time.sleep(1)
