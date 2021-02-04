@@ -6,7 +6,7 @@ import sys
 # import keyboard
 
 
-def IsFind(img):
+def FingImg(img):
     location = pyautogui.locateOnScreen(img, confidence=0.8)
     if location == None:
         return False
@@ -16,56 +16,20 @@ def IsFind(img):
         return True
 
 
-def SelectNextCourse():
-    ret = pyautogui.locateOnScreen('next.png', confidence=0.8)
-
-    # if ret == None:
-    #     ret = pyautogui.locateOnScreen('icon.png', confidence=0.8)
-
-    if ret == None:
-        return False
-    else:
-        print("select next")
-        p = pyautogui.center(ret)
-        pyautogui.moveTo(p.x, p.y)
-        time.sleep(1)
-        pyautogui.click()
-        return True
-
-
 while True:
-    if(IsFind('wework.png')):
+    if(FingImg('wework.png')):
         print("1")
         pyautogui.doubleClick()
         break
     time.sleep(1)
 
+imgs = ['apps.png', 'wifi.png', 'order.png', 'confirm.png']
 
 while True:
-    if(IsFind('apps.png')):
-        print("2")
-        pyautogui.click()
-        break
-    time.sleep(1)
-
-
-while True:
-    if(IsFind('wifi.png')):
-        print("3")
-        pyautogui.click()
-        break
-    time.sleep(1)
-
-while True:
-    if(IsFind('order.png')):
-        print("4")
-        pyautogui.click()
-        break
-    time.sleep(1)
-
-while True:
-    if(IsFind('confirm.png')):
-        print("5")
-        pyautogui.click()
-        break
-    time.sleep(1)
+    for img in imgs:
+        while True:
+            if(FingImg(img)):
+                print(img, ' found')
+                pyautogui.click()
+                break
+            time.sleep(1)
