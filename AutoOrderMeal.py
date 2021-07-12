@@ -2,14 +2,12 @@
 
 import time
 import pyautogui
-import sys
-# import keyboard
 
 
-def FingImg(img):
+def FindImg(img):
     print("finding {}".format(img))
     location = pyautogui.locateOnScreen(img, confidence=0.8)
-    if location == None:
+    if location is None:
         return False
     else:
         c = pyautogui.center(location)
@@ -17,40 +15,50 @@ def FingImg(img):
         return True
 
 
-def WaitUntilFindImg_Click(img):
+def IsImageExist(img):
+    print("finding {}".format(img))
+    location = pyautogui.locateOnScreen(img, confidence=0.8)
+    if location is None:
+        return False
+    else:
+        return True
+
+
+def MakeSureClickImage(img, confirmImage):
     while True:
-        if(FingImg(img)):
+        if IsImageExist(confirmImage):
+            break
+        if FindImg(img):
             print(img, ' found')
             pyautogui.click()
-            break
-    time.sleep(1)
+            time.sleep(2)
 
 
-def WaitUntilFindImg_DoubleClick(img):
-    while True:
-        if(FingImg(img)):
-            print(img, ' found')
-            pyautogui.doubleClick()
-            break
-    time.sleep(1)
+MakeSureClickImage("wework.png", "menu.png")
 
+MakeSureClickImage("app1.png", "app2.png")
 
-WaitUntilFindImg_DoubleClick('wework.png')
+MakeSureClickImage("wifi.png", "order.png")
 
-while True:
-    if(FingImg('app1.png') or FingImg('app2.png')):
-        print('app', ' found')
-        pyautogui.click()
-        break
-    time.sleep(1)
+MakeSureClickImage("order.png", "confirm.png")
 
-imgs = ['wifi.png', 'order.png', 'confirm.png']
+MakeSureClickImage("confirm.png", "success.png")
 
-while True:
-    for img in imgs:
-        while True:
-            if(FingImg(img)):
-                print(img, ' found')
-                pyautogui.click()
-                break
-            time.sleep(1)
+# WaitUntilFindImg_DoubleClick('wework.png')
+#
+# while True:
+#     if (FingImg('app1.png') or FingImg('app2.png')):
+#         print('app', ' found')
+#         pyautogui.click()
+#         break
+#     time.sleep(1)
+#
+# imgs = ['wifi.png', 'order.png', 'confirm.png']
+#
+# for img in imgs:
+#     while True:
+#         if (FingImg(img)):
+#             print(img, ' found')
+#             pyautogui.click()
+#             break
+#         time.sleep(1)
