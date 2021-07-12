@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+import sys
 import time
 import pyautogui
 
@@ -24,6 +24,18 @@ def IsImageExist(img):
         return True
 
 
+intervalTime = 3
+gettrace = getattr(sys, 'gettrace', None)
+if gettrace is None:
+    intervalTime = 5
+elif gettrace():
+    intervalTime = 3
+else:
+    intervalTime = 0.3
+
+print("interval:", intervalTime)
+
+
 def MakeSureClickImage(img, confirmImage):
     while True:
         if IsImageExist(confirmImage):
@@ -31,34 +43,14 @@ def MakeSureClickImage(img, confirmImage):
         if FindImg(img):
             print(img, ' found')
             pyautogui.click()
-            time.sleep(2)
+        time.sleep(intervalTime)
 
 
-MakeSureClickImage("wework.png", "menu.png")
+imgGroups = [["wework.png", "menu.png"],
+             ["app1.png", "app2.png"],
+             ["wifi.png", "order.png"],
+             ["order.png", "confirm.png"],
+             ["confirm.png", "success.png"]]
 
-MakeSureClickImage("app1.png", "app2.png")
-
-MakeSureClickImage("wifi.png", "order.png")
-
-MakeSureClickImage("order.png", "confirm.png")
-
-MakeSureClickImage("confirm.png", "success.png")
-
-# WaitUntilFindImg_DoubleClick('wework.png')
-#
-# while True:
-#     if (FingImg('app1.png') or FingImg('app2.png')):
-#         print('app', ' found')
-#         pyautogui.click()
-#         break
-#     time.sleep(1)
-#
-# imgs = ['wifi.png', 'order.png', 'confirm.png']
-#
-# for img in imgs:
-#     while True:
-#         if (FingImg(img)):
-#             print(img, ' found')
-#             pyautogui.click()
-#             break
-#         time.sleep(1)
+for imgList in imgGroups:
+    MakeSureClickImage(imgList[0], imgList[1])
