@@ -39,6 +39,7 @@ print("interval:", intervalTime)
 def MakeSureClickImage(img, confirmImage):
     while True:
         if IsImageExist(confirmImage):
+            print(confirmImage, ' exist')
             break
         if FindImg(img):
             print(img, ' found')
