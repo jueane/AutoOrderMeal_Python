@@ -50,7 +50,7 @@ def MakeSureClickImage(img, confirmImage):
 imgGroups = [["wework.png", "menu.png"],
              ["app1.png", "app2.png"],
              ["order.png", "refresh.png"],
-             ["refresh.png", "confirm.png"],
+            #  ["refresh.png", "confirm.png"],
              ["confirm.png", "success.png"]]
 
 for imgList in imgGroups:
