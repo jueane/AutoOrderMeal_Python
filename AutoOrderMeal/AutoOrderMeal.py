@@ -31,7 +31,7 @@ if gettrace is None:
 elif gettrace():
     intervalTime = 3
 else:
-    intervalTime = 0.3
+    intervalTime = 0.5
 
 print("interval:", intervalTime)
 
@@ -44,6 +44,7 @@ def MakeSureClickImage(img, confirmImage):
         if FindImg(img):
             print(img, ' found')
             pyautogui.click()
+            time.sleep(0.5)
         time.sleep(intervalTime)
 
 
