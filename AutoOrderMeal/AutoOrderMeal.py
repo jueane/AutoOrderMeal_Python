@@ -24,19 +24,7 @@ def IsImageExist(img):
         return True
 
 
-intervalTime = 3
-gettrace = getattr(sys, 'gettrace', None)
-if gettrace is None:
-    intervalTime = 5
-elif gettrace():
-    intervalTime = 3
-else:
-    intervalTime = 0.5
-
-print("interval:", intervalTime)
-
-
-def MakeSureClickImage(img, confirmImage):
+def MakeSureClickImage(img, confirmImage, intervalTime):
     while True:
         if IsImageExist(confirmImage):
             print(confirmImage, ' exist')
@@ -44,15 +32,16 @@ def MakeSureClickImage(img, confirmImage):
         if FindImg(img):
             print(img, ' found')
             pyautogui.click()
-            time.sleep(0.5)
-        time.sleep(intervalTime)
+            time.sleep(intervalTime)
+        time.sleep(0.2)
 
 
-imgGroups = [["wework.png", "menu.png"],
-             ["app1.png", "app2.png"],
-             ["order.png", "refresh.png"],
-            #  ["refresh.png", "confirm.png"],
-             ["confirm.png", "success.png"]]
+imgGroups = [["wework.png", "menu.png", 1],
+             ["app1.png", "app2.png", 1],
+             ["order.png", "refresh.png", 1],
+             #  ["refresh.png", "confirm.png",1],
+             ["confirm.png", "success.png", 5]]
 
 for imgList in imgGroups:
-    MakeSureClickImage(imgList[0], imgList[1])
+    print("Working on ", imgList[0], imgList[1], imgList[2])
+    MakeSureClickImage(imgList[0], imgList[1], imgList[2])
